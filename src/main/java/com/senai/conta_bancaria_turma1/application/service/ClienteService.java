@@ -23,7 +23,11 @@ public class ClienteService {
         boolean jaTemTipo = contas.stream().anyMatch(
                 c -> c.getClass().equals(novaConta.getClass()) && c.isAtiva()
                 );
+        if (jaTemTipo)
+            throw new RuntimeException("Cliente já possui uma conta desse tipo.");
 
-        return
+        cliente.getContas().add(novaConta);
+
+        return ClienteResponseDTO.fromEntity(repository.save(cliente));
     }
 }
