@@ -4,6 +4,7 @@ import com.senai.conta_bancaria_turma1.application.dto.ClienteRegistroDTO;
 import com.senai.conta_bancaria_turma1.application.dto.ClienteResponseDTO;
 import com.senai.conta_bancaria_turma1.domain.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
