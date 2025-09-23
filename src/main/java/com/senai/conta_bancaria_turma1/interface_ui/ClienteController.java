@@ -18,4 +18,17 @@ public class ClienteController {
     public ClienteResponseDTO registrarCliente(@RequestBody ClienteRegistroDTO dto) {
         return service.registrarCliente(dto);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteResponseDTO> obterCliente(@PathVariable String id) {
+        return ResponseEntity.ok().build();
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> removerCliente(@PathVariable String id) {
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarCliente(@PathVariable String id) {
+        return ResponseEntity.ok().build();
+    }
+
 }

@@ -31,4 +31,12 @@ public class ClienteService {
 
         return ClienteResponseDTO.fromEntity(repository.save(cliente));
     }
+    public ResponseEntity<ClienteResponseDTO> obterCliente(String id) {
+        return ResponseEntity.ok().build();
+    }
+    public ResponseEntity<Void> removerCliente(String id) {
+        return ResponseEntity.ok().build();
+    }
+    public ResponseEntity<Void> atualizarCliente(String id) {
+        return ResponseEntity.ok().build();
 }
