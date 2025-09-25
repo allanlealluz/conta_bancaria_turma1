@@ -26,7 +26,7 @@ public class ClienteController {
     public ResponseEntity<Void> removerCliente(@PathVariable String id) {
         return ResponseEntity.ok().build();
     }
-    @PutMapping("/{id}")
+    @PutMapping("/{cpf}")
     public ResponseEntity<Void> atualizarCliente(@PathVariable String cpf) {
         return ResponseEntity.ok().build();
     }
