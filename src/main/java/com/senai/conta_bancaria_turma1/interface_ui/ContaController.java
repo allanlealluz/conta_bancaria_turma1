@@ -1,5 +1,6 @@
 package com.senai.conta_bancaria_turma1.interface_ui;
 
+import com.senai.conta_bancaria_turma1.application.dto.ClienteAtualizacaoDTO;
 import com.senai.conta_bancaria_turma1.application.dto.ContaResumoDTO;
 import com.senai.conta_bancaria_turma1.application.service.ContaService;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +28,12 @@ public class ContaController {
         return ResponseEntity.ok(service.buscarContaPorNumero(numeroDaConta));
     }
     @PutMapping("/{numeroDaConta}")
-    public ResponseEntity<ContaService> atualizarConta(@PathVariable String numeroDaConta) {
-        return ResponseEntity.ok(service);
+    public ResponseEntity<ContaResumoDTO> atualizarConta(@PathVariable String numeroDaConta, @RequestBody ClienteAtualizacaoDTO dto) {
+        return ResponseEntity.ok(service.atualizarConta(numeroDaConta, dto));
     }
     @DeleteMapping("/{numeroDaConta}")
     public ResponseEntity<ContaService> deletarConta(@PathVariable String numeroDaConta) {
-        return ResponseEntity.ok(service);
+        service.deletarConta(numeroDaConta);
+        return ResponseEntity.noContent().build();
     }
 }

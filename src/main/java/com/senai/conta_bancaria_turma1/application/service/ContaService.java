@@ -46,4 +46,10 @@ public class ContaService {
        conta.setSaldo(dto.saldo());
        return ContaResumoDTO.fromEntity(repository.save(conta));
     }
+    public void deletarConta(@PathVariable String numero) {
+        Conta conta = repository.findByNumeroAndAtivaTrue(numero)
+                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+        conta.setAtiva(false);
+        repository.save(conta);
+    }
 }
