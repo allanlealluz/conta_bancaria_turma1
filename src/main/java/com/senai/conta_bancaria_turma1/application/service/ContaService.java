@@ -2,6 +2,7 @@ package com.senai.conta_bancaria_turma1.application.service;
 
 import com.senai.conta_bancaria_turma1.application.dto.ContaAtualizacaoDTO;
 import com.senai.conta_bancaria_turma1.application.dto.ContaResumoDTO;
+import com.senai.conta_bancaria_turma1.application.dto.TransferenciaDTO;
 import com.senai.conta_bancaria_turma1.application.dto.ValorSaqueDepositoDTO;
 import com.senai.conta_bancaria_turma1.domain.entity.Conta;
 import com.senai.conta_bancaria_turma1.domain.entity.ContaCorrente;
@@ -68,5 +69,16 @@ public class ContaService {
     private Conta buscarContaAtivaPorNumero(String numero) {
         return repository.findByNumeroAndAtivaTrue(numero)
                 .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+    }
+
+    public ContaResumoDTO transferir(String numeroDaConta, TransferenciaDTO dto) {
+        Conta conta = buscarContaAtivaPorNumero(numeroDaConta);
+        Conta contaDestino = buscarContaAtivaPorNumero(dto.numeroContaDestino());
+        conta.sacar(dto.valor());
+        contaDestino.depositar(dto.valor());
+        repository.save(conta);
+        repository.save(contaDestino);
+        return ContaResumoDTO.fromEntity(conta);
+
     }
 }
