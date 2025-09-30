@@ -39,4 +39,23 @@ public abstract class Conta {
     private Cliente cliente;
 
     public abstract String getTipo() ;
+    public void sacar(BigDecimal valor) {
+        ValidarValorMaiorQueZero(valor);
+        if (saldo.compareTo(valor) < 0) {
+            throw new IllegalArgumentException("Saldo insuficiente");
+        }
+        saldo = saldo.subtract(valor);
+    }
+
+    public void depositar(BigDecimal valor) {
+        ValidarValorMaiorQueZero(valor);
+        saldo = saldo.add(valor);
+    }
+
+    private static void ValidarValorMaiorQueZero(BigDecimal valor) {
+        if(valor.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Valor deve ser maior que zero");
+        }
+    }
+
 }
