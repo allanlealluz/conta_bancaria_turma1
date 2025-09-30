@@ -1,13 +1,15 @@
 package com.senai.conta_bancaria_turma1.domain.repository;
 
-import com.senai.conta_bancaria_turma1.domain.entity.Cliente;
 import com.senai.conta_bancaria_turma1.domain.entity.Conta;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ContaRepository {
+import java.util.Optional;
 
-    List<Cliente> findAllByAtivaTrue();
+@Repository
+public interface ContaRepository extends JpaRepository<Conta, String> {
 
-    Cliente findByNumeroAndAtivaTrue(String numero);
+    Optional<Conta> findAllByAtivaTrue();
+
+    Optional<Conta> findByNumeroAndAtivaTrue(String numero);
 }

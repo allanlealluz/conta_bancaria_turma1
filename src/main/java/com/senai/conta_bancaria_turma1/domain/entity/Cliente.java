@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @Table(name = "cliente",
         uniqueConstraints = {
-                 @UniqueConstraint( columnNames = "cpf")
+                @UniqueConstraint( columnNames = "cpf")
         }
 )
 public  class Cliente {
@@ -32,4 +32,5 @@ public  class Cliente {
 
     @Column(nullable = false)
     private Boolean ativo;
+
 }
